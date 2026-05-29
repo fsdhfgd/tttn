@@ -1,1 +1,6 @@
+name = "tttn"
+compatibility_date = "2026-05-01"
+main = "worker.js"
 
+# 如果你以后需要托管静态文件（HTML/CSS/JS），再取消下面这行的注释
+# assets = { directory = "./public" }
