@@ -1,3 +1,6 @@
 name = "tttn"
 compatibility_date = "2026-05-01"
 main = "worker.js"
+
+# 关键：启用静态资源托管
+assets = { directory = "./" }   # 根目录所有文件都可以访问
