@@ -1,3 +1,9 @@
-name = "my-json-worker"          # ← 可以改成你喜欢的英文名称（不能有空格）
+name = "my-json-worker"
 main = "src/index.js"
 compatibility_date = "2026-05-01"
+
+# 静态资源配置
+assets = {
+  directory = "./public",
+  binding = "ASSETS"
+}
