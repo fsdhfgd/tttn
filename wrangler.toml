@@ -1,4 +1,4 @@
-name = "my-json-worker"
+name = "tttn"
 main = "src/index.js"
 compatibility_date = "2026-05-01"
 
