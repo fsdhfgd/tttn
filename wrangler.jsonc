@@ -1,0 +1,10 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cloudflare/workers-sdk/main/packages/wrangler/config-schema.json",
+  "name": "zx",
+  "compatibility_date": "2025-05-17",
+  "main": "src/index.js", // 注意这里是小写 src，和实际文件夹名一致
+  "assets": {
+    "directory": ".", // 静态资源在项目根目录
+    "binding": "ASSETS"
+  }
+}
