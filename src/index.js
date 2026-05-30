@@ -3,22 +3,24 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
 
-    // 根路径显示说明
+    // 根路径显示欢迎页
     if (path === '/' || path === '') {
       return new Response(`
-        <h1>✅ GitHub 文件代理已运行</h1>
-        <p>访问示例：</p>
+        <h1>✅ GitHub 文件代理已成功运行</h1>
+        <p>你的仓库：fsdhfgd/tttn</p>
+        <p>访问方式：</p>
         <p><a href="/data.json">/data.json</a></p>
         <p><a href="/0707.json">/0707.json</a></p>
+        <p><a href="/0821.json">/0821.json</a></p>
       `, {
         headers: { 'Content-Type': 'text/html; charset=utf-8' }
       });
     }
 
     // ==================== 你的仓库配置 ====================
-    const owner = "qist";      // 原仓库作者
-    const repo = "tvbox";      // 原仓库名
-    const branch = "master";   // 你的分支是 master
+    const owner = "fsdhfgd";     // 你的 GitHub 用户名
+    const repo = "tttn";         // 你的仓库名
+    const branch = "master";     // 当前分支（从你截图看是 master）
     // ====================================================
 
     const githubUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}${path}`;
@@ -27,7 +29,7 @@ export default {
       const response = await fetch(githubUrl);
 
       if (!response.ok) {
-        return new Response('❌ 文件不存在或无法访问', { 
+        return new Response(`❌ 文件不存在: ${path}`, { 
           status: 404,
           headers: { 'Content-Type': 'text/plain; charset=utf-8' }
         });
@@ -35,13 +37,15 @@ export default {
 
       const newHeaders = new Headers(response.headers);
       
-      // 自动设置 Content-Type
+      // 自动识别文件类型
       if (path.endsWith('.json')) {
         newHeaders.set('Content-Type', 'application/json; charset=utf-8');
       } else if (path.endsWith('.js')) {
         newHeaders.set('Content-Type', 'application/javascript; charset=utf-8');
       } else if (path.endsWith('.html')) {
         newHeaders.set('Content-Type', 'text/html; charset=utf-8');
+      } else if (path.endsWith('.md')) {
+        newHeaders.set('Content-Type', 'text/markdown; charset=utf-8');
       }
 
       newHeaders.set('Access-Control-Allow-Origin', '*');
@@ -53,7 +57,10 @@ export default {
       });
 
     } catch (err) {
-      return new Response('❌ 代理请求失败', { status: 500 });
+      return new Response('❌ 请求失败，请稍后重试', { 
+        status: 500,
+        headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+      });
     }
   }
 };
