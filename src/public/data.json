@@ -1,1 +1,21 @@
-
+{
+  "name": "示例数据",
+  "version": "1.0.0",
+  "description": "这是一个通过 Cloudflare Worker 提供的 JSON 数据",
+  "success": true,
+  "timestamp": "2026-05-30",
+  "data": {
+    "items": [
+      {
+        "id": 1,
+        "title": "第一个项目",
+        "value": 100
+      },
+      {
+        "id": 2,
+        "title": "第二个项目",
+        "value": 200
+      }
+    ]
+  }
+}
