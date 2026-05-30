@@ -2,7 +2,6 @@ name = "my-json-worker"
 main = "src/index.js"
 compatibility_date = "2026-05-01"
 
-# 静态资源配置（正确写法）
 [assets]
 directory = "./public"
 binding = "ASSETS"
